@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useCallback } from 'react'
 import { persons } from './persons'
 import Person from './Person'
 import { personReducer } from './personReducer'
@@ -10,7 +10,12 @@ const warningStyles = {
 }
 
 function PersonList() {
+    console.log('List Rendering')
     const [personsState, personsDispatch] = useReducer(personReducer, persons)
+
+    const handleAddPerson = useCallback(person => {
+        personsDispatch({type: 'add', value: person})
+    }, [])
 
     return (
         <div>
@@ -37,7 +42,7 @@ function PersonList() {
             }
 
             <hr/>
-            <AddPersonForm handleAddPerson={person => personsDispatch({type: 'add', value: person})} />
+            <AddPersonForm handleAddPerson={handleAddPerson} />
         </div>
     )
 }

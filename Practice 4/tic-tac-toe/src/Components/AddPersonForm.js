@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
-const AddPersonForm = React.memo(({handleAddPerson}) => {
+const AddPersonForm = ({handleAddPerson}) => {
+    console.log('Form rendering')
     const [personName, setPersonName] = useState('');
     
     const handleInputChange = event => {
@@ -22,6 +23,6 @@ const AddPersonForm = React.memo(({handleAddPerson}) => {
             &nbsp;<button type="submit">Add Person</button>
         </form>
     )
-});
+}
 
-export default AddPersonForm
+export default React.memo(AddPersonForm);
