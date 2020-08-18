@@ -42,7 +42,7 @@ function LazyComponentFunction({resolve, props, loadingIndicator: {component: lo
             }
         };
 
-        loadComponent();
+        setTimeout(loadComponent, 5000);
 
         return () => console.log('Lazy component has been unloaded.');
     }, [])
