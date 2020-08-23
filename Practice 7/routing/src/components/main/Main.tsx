@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Nav from '../navigation-bar/Nav'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import INavLink from '../navigation-bar/INavLink'
@@ -9,6 +9,7 @@ import IPost from '../Posts/IPost'
 import Posts from '../Posts/Posts'
 import IComment from '../comments/IComment'
 import Comments from '../comments/Comments'
+import { request } from 'https'
 
 const mainRoutes: INavLink[] = [
     {id: 1, text: 'Home', link: '/'},
@@ -17,8 +18,7 @@ const mainRoutes: INavLink[] = [
 ]
 
 function Main() {
-    let posts: IPost[] = [];
-    let comments: IComment[] = [];
+    const [comments, setComments] = useState([] as IComment[]);
 
     const fetchData = async (url: string) => {
         try {
@@ -30,12 +30,6 @@ function Main() {
         }
     }
 
-    const fetchPosts = async () => {
-        const json = await fetchData('https://jsonplaceholder.typicode.com/posts');
-        const posts: IPost[] = json;
-        return posts;
-    }
-
     const fetchComments = async () => {
         const json = await fetchData('https://jsonplaceholder.typicode.com/comments');
         const comments: IComment[] = json;
@@ -43,12 +37,11 @@ function Main() {
     }
 
     useEffect(() => {
-        fetchPosts().then(result => {
-            posts = result
-        });
-
-        fetchComments().then(result => comments = result);
-    });
+        (async () => {
+            let fetchedComments = await fetchComments();
+            setComments(fetchedComments);
+        })()
+    }, [])
 
     return (
         <Router>
@@ -57,9 +50,9 @@ function Main() {
             </nav>
 
             <Switch>
-                <Route path="/posts" render={props => <Posts {...props} posts={posts} />} />
+                <Route path="/posts" render={props => <Posts {...props} />} />
                 <Route path="/comments" render={props => <Comments {...props} comments={comments} />} />
-                <Route path="/" render={() => <div>Select a link from the top navigation bar</div>} />
+                <Route exact={true} path="/" render={() => <div>Select a link from the top navigation bar</div>} />
             </Switch>
         </Router>
     )

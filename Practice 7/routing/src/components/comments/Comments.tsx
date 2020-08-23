@@ -1,18 +1,28 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import IComment from './IComment'
 import INavLink from '../navigation-bar/INavLink';
 import mainStyles from '../../styles/main.module.css'
 import Nav from '../navigation-bar/Nav';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import Comment from './Comment'
 
-function Comments(props: {comments: IComment[], match: {url: string}}) {
-    const { comments, match: {url: parentUrl}} = props;
-    const childLinks: INavLink[] = comments.map(comment => ({
-        id: comment.id,
-        link: `${parentUrl}/${comment.id}`,
-        text: comment.email || '[No Title Available]'
-    }));
+function Comments(props: {comments: IComment[]}) {
+    const routeMatch = useRouteMatch();
+    const [childLinks, setChildLinks] = useState([] as INavLink[]);
+
+    const { comments } = props;
+
+    useEffect(() => {
+        (async () => {
+                let mappedLinks = comments.map(comment => ({
+                id: comment.id,
+                link: `${routeMatch.url}/${comment.id}`,
+                text: comment.email || '[No Title Available]'
+            }));
+
+            setChildLinks(mappedLinks);
+        })();
+    }, [])
 
     return (
         <>
@@ -24,8 +34,8 @@ function Comments(props: {comments: IComment[], match: {url: string}}) {
                     </nav>
                     <div>
                         <Switch>
-                            <Route path={`${parentUrl}/:commentId`} render={(props: any) => <Comment comment={comments.find(comment => comment.id == props.match.params.commentId)} />} />
-                            <Route path={parentUrl} render={() => <b>Select a comment from the side navigation bar.</b>} />
+                            <Route path={`${routeMatch.path}/:commentId`} render={(props: any) => <Comment comment={comments.find(comment => comment.id == props.match.params.commentId)} />} />
+                            <Route path={routeMatch.path} render={() => <b>Select a comment from the side navigation bar.</b>} />
                         </Switch>
                     </div>
                 </div>

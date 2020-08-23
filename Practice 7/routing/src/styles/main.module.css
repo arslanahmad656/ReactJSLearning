@@ -12,8 +12,7 @@ nav.reset ul li a{
 nav.main ul {
     display: flex;
     justify-content: space-around;
-    background-color: rgba(10, 33, 59, 0.7);
-    
+    background-color: rgba(10, 33, 59, 0.7);   
 }
 
 nav.main ul li a {
@@ -33,7 +32,7 @@ nav.main ul li a:hover {
     color: rgb(115, 215, 99)
 }
 
-nav.side {
+nav.side ul {
     background-color: rgba(44, 212, 157, 0.83);
 }
 
@@ -49,6 +48,10 @@ nav.side ul li a {
 nav.side ul li a:hover {
     background-color: rgba(22, 55, 44, 0.12);
     color: rgb(33, 87, 96);
+}
+
+.navLinkActive {
+    background-color: black;
 }
 
 /*******************************************************************/
