@@ -1,9 +1,14 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
-class FirstComponent extends Component {
-    render() {
-        return (<h1>Hello Component</h1>)
-    }
+function FirstComponent() {
+    const [counter, setCounter] = useState(0);
+
+    const handleClick = () => setCounter(counter + 1);
+    return (
+        <button onClick={handleClick}>
+            Clicked {counter} time(s)
+        </button>
+    )
 }
 
 export default FirstComponent
