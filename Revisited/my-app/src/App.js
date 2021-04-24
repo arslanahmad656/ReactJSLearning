@@ -11,6 +11,13 @@ function App() {
         message={"Decrement by 5"}
         step={-5}
       />
+
+      <hr /> <br />
+
+      <Incrementor initialValue={0}
+        message={"Increment by 15"}
+        step={15}
+      />
     </div>
   );
 }
