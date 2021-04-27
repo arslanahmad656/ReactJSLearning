@@ -5,10 +5,23 @@ import Incrementor from './components/click-counter/Incrementor';
 import Card from './components/github-fetch/Card';
 import CardList from './components/github-fetch/CardList';
 import { testData as gitHubCardTestData } from './components/github-fetch/sample-data';
+import ControlledInputs from './components/ControlledInputs';
+import LifecycleComponent from './components/lifecycle/Component';
+import RefParent from './components/refs/RefParent';
 
 function App() {
   return (
     <div className="App">
+      <RefParent />
+      {/* <div>
+        <LifecycleComponent name={"Level - 1"} addStateButton={true}>
+          <LifecycleComponent name={"Level - 1.1"} />
+          <LifecycleComponent name={"Level - 1.2"} addStateButton={true}>
+            <LifecycleComponent name={"Level - 1.2.1"} />
+          </LifecycleComponent>
+        </LifecycleComponent>
+      </div> */}
+      {/* <ControlledInputs /> */}
       {/* <FirstComponent /> */}
       {/* <Incrementor initialValue={100}
         message={"Decrement by 5"}
@@ -27,7 +40,7 @@ function App() {
         name="Profile Name" 
         company="Organization" 
       /> */}
-      <CardList cardList={gitHubCardTestData} />
+      {/* <CardList cardList={gitHubCardTestData} /> */}
     </div>
   );
 }
