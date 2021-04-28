@@ -8,11 +8,21 @@ import { testData as gitHubCardTestData } from './components/github-fetch/sample
 import ControlledInputs from './components/ControlledInputs';
 import LifecycleComponent from './components/lifecycle/Component';
 import RefParent from './components/refs/RefParent';
+import PortalParent from './components/portals/PortalParent';
+import PortalContainer from './components/portals/PortalContainer';
+import Parent from './components/ErrorBoundaries/Parent';
+import HOCDemo from './components/HOC/HOCDemo';
+import RenderPropsParent from './components/render-props/RenderPropsParent';
 
 function App() {
   return (
     <div className="App">
-      <RefParent />
+      <RenderPropsParent />
+      {/* <HOCDemo /> */}
+       {/* <Parent /> */}
+      {/* <PortalContainer /> */}
+      {/* <PortalParent /> */}
+      {/* <RefParent /> */}
       {/* <div>
         <LifecycleComponent name={"Level - 1"} addStateButton={true}>
           <LifecycleComponent name={"Level - 1.1"} />
