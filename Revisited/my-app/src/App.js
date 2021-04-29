@@ -13,11 +13,13 @@ import PortalContainer from './components/portals/PortalContainer';
 import Parent from './components/ErrorBoundaries/Parent';
 import HOCDemo from './components/HOC/HOCDemo';
 import RenderPropsParent from './components/render-props/RenderPropsParent';
+import ContextParent from './components/Context/Parent'
 
 function App() {
   return (
     <div className="App">
-      <RenderPropsParent />
+      <ContextParent />
+      {/* <RenderPropsParent /> */}
       {/* <HOCDemo /> */}
        {/* <Parent /> */}
       {/* <PortalContainer /> */}
