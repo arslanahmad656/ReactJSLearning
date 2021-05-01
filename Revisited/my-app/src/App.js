@@ -14,11 +14,17 @@ import Parent from './components/ErrorBoundaries/Parent';
 import HOCDemo from './components/HOC/HOCDemo';
 import RenderPropsParent from './components/render-props/RenderPropsParent';
 import ContextParent from './components/Context/Parent'
+import UseEffectWithClass from './hookComponents/useEffect/UseEffectWithClass';
+import ReducerCounter from './hookComponents/useReducer/ReducerCounter';
+import ReducerContextParent from './hookComponents/useReducer/ReducerWithContext/ReducerContextParent';
 
 function App() {
   return (
     <div className="App">
-      <ContextParent />
+      <ReducerContextParent />
+      {/* <ReducerCounter /> */}
+      {/* <UseEffectWithClass /> */}
+      {/* <ContextParent /> */}
       {/* <RenderPropsParent /> */}
       {/* <HOCDemo /> */}
        {/* <Parent /> */}
